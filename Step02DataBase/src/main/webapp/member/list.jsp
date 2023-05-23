@@ -13,12 +13,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/member/list.jsp</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
 </head>
 <body>
 	<div class="container">
 		<h1>회원 목록입니다.</h1>
-		<table>
+		<div class="text-end">
+			<a href="insertform.jsp">회원추가</a>
+		</div>
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>번호</th>
