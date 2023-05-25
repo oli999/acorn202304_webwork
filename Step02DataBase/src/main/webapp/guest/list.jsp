@@ -13,14 +13,19 @@
 <head>
 <meta charset="UTF-8">
 <title>/guest/list.jsp</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+	<jsp:include page="/include/navbar.jsp">
+		<jsp:param value="guest" name="current"/>
+	</jsp:include>
 	<div class="container">
 		<h1>방명록 글 목록</h1>
 		<div>
 			<a href="${pageContext.request.contextPath }/guest/insertform.jsp">글작성</a>
 		</div>
-		<table>
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>번호</th>
