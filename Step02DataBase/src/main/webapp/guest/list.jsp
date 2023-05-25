@@ -27,6 +27,7 @@
 					<th>작성자</th>
 					<th>내용</th>
 					<th>등록일</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,8 +35,17 @@
 				<tr>
 					<td><%=tmp.getNum() %></td>
 					<td><%=tmp.getWriter() %></td>
-					<td><%=tmp.getContent() %></td>
+					<td>
+						<textarea rows="5" readonly><%=tmp.getContent() %></textarea>
+					</td>
 					<td><%=tmp.getRegdate() %></td>
+					<td>
+						<form action="delete.jsp" method="post">
+							<input type="hidden" name="num" value="<%=tmp.getNum()%>"/>
+							<input type="password" name="pwd" placeholder="비밀번호..."/>
+							<button type="submit">삭제</button>
+						</form>
+					</td>
 				</tr>
 			<%} %>	
 			</tbody>
