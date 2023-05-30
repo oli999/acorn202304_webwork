@@ -25,12 +25,10 @@
 				console.log(list);
 				//반복문 돌면서 
 				for(let i=0; i<list.length; i++){
-					//li 요소를 만들어서 
-					let li=document.createElement("li");
-					//innerText 에 메세지를 출력하고 
-					li.innerText=list[i];
-					//ul 에 append 시키기
-					document.querySelector("#msgList").append(li);
+					//backtick 을 활용해서 li 안에 메세지를 출력하고
+					let li=`<li>\${list[i]}</li>`;
+					// ul 요소가 끝나기 직전에 HTML 로 평가해서 추가하기 
+					document.querySelector("#msgList").insertAdjacentHTML("beforeend", li);		
 				}
 			});
 			
