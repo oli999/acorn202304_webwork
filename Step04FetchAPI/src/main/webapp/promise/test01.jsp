@@ -36,7 +36,7 @@
 				resolve 는 작업을 완료 했을때 호출 해야하는 함수
 				resolve 함수가 호출되면 .then() 안에 있는 함수가 자동 호출된다.
 			*/
-			resolve();
+			//resolve();
 		});
 		
 		p1.then(function(){
