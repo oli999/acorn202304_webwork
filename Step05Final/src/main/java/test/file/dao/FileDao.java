@@ -22,6 +22,40 @@ public class FileDao {
 		}
 		return dao;
 	}
+	
+	//파일 정보를 삭제하는 메소드
+	public boolean delete(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int rowCount = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "DELETE FROM board_file"
+					+ " WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			//실행할 sql 문이 미완성이라면 여기서 완성
+			pstmt.setInt(1, num);
+			//sql 문을 수행하고 변화된(추가, 수정, 삭제된) row 의 갯수 리턴 받기
+			rowCount = pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		//만일 변화된 row 의 갯수가 0 보다 크면 작업 성공
+		if (rowCount > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//파일 하나의 정보를 리턴해주는 메소드
 	public FileDto getData(int num) {
 		FileDto dto=null;

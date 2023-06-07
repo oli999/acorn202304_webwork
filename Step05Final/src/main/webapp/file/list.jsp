@@ -6,6 +6,8 @@
 <%
 	//파일 목록을 얻어온다.
 	List<FileDto> list=FileDao.getInstance().getList();
+	//로그인된 아이디( 로그인이 되어있지 않으면 null 이다)
+	String id=(String)session.getAttribute("id");
 %>    
 <!DOCTYPE html>
 <html>
@@ -25,6 +27,7 @@
 					<th>제목</th>
 					<th>파일명</th>
 					<th>등록일</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,6 +40,12 @@
 						<a href="download.jsp?num=<%=tmp.getNum() %>"><%=tmp.getOrgFileName() %></a>
 					</td>
 					<td><%=tmp.getRegdate() %></td>
+					<td>
+						<%-- 글작성자와 로그인된 아이디와 같을때만 삭제 링크 출력하기 --%>
+						<%if(tmp.getWriter().equals(id)){ %>
+							<a href="delete.jsp?num=<%=tmp.getNum() %>">삭제</a>
+						<%} %>
+					</td>
 				</tr>
 			<%} %>	
 			</tbody>
