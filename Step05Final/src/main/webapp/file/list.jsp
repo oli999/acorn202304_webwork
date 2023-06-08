@@ -18,6 +18,8 @@
 <body>
 	<div class="container">
 		<a href="${pageContext.request.contextPath }/file/private/upload_form.jsp">업로드 하기</a>
+		<br>
+		<a href="${pageContext.request.contextPath }/file/private/upload_form2.jsp">ajax 업로드 하기</a>
 		<h1>자료실 목록입니다.</h1>
 		<table>
 			<thead>
