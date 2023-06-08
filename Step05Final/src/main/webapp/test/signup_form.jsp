@@ -50,6 +50,10 @@
                     <label class="form-check-label" for="etc">기타</label>
                 </div>
             </fieldset>
+           	<div>
+           		<label class="form-label" for="comment">하고 싶은말</label>
+           		<textarea class="form-control" name="comment" id="comment" rows="10"></textarea>
+           	</div>
             <fieldset>
                 <legend>개인정보 활용 동의</legend>
                 <div class="form-check form-switch">
