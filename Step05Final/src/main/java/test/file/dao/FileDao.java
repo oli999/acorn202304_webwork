@@ -102,6 +102,44 @@ public class FileDao {
 		return dto;
 	}
 	
+	//전체 글의 갯수를 리턴해주는 메소드
+	public int getCount() {
+		//글의 갯수를 담을 지역변수
+		int count=0;
+		//필요한 객체의 참조값을 담을 지역변수 미리 만들기
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//DbcpBean 객체를 이용해서 Connection 객체를 얻어온다(Connection Pool 에서 얻어오기)
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 
+			String sql = "SELECT MAX(ROWNUM) AS num FROM board_file";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문이 미완성이라면 여기서 완성
+
+			//select 문 수행하고 결과값 받아오기
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 ResultSet 에 담긴 내용 추출
+			while (rs.next()) {
+				count=rs.getInt("num");
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection 이 Connection Pool 에 반납된다.
+			} catch (Exception e) {
+			}
+		}
+		return count;
+	}
+	
 	//페이지에 해당하는 목록만 리턴하는 메소드
 	public List<FileDto> getList(FileDto dto){
 		//파일 목록을 담을 ArrayList 객체 생성 
