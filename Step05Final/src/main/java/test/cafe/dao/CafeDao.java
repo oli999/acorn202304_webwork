@@ -30,6 +30,51 @@ public class CafeDao {
 		//여기서 리턴해주는 값은 null 이 아니다 
 		return dao;
 	}
+	
+	//글번호를 이용해서 글 하나의 정보를 리턴하는 메소드 
+	public CafeDto getData(int num) {
+		CafeDto dto=null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			//select 문의 뼈대 구성하기
+			String sql = "SELECT writer, title, content, viewCount, regdate"
+					+ " FROM board_cafe"
+					+ " WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 값 바인딩 할게 있으면 하기
+			pstmt.setInt(1, num);
+			//sql 문 수행하고 ResultSet 객체 얻어내기
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto=new CafeDto();
+				dto.setNum(num);
+				dto.setWriter(rs.getString("writer"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setViewCount(rs.getInt("viewCount"));
+				dto.setRegdate(rs.getString("regdate"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return dto;		
+	}
+	
+	
 	//글의 갯수를 리턴하는 메소드
 	public int getCount() {
 		int count=0;
