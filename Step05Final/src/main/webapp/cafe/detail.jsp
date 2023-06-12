@@ -44,7 +44,9 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<textarea class="form-control" rows="10" readonly><%=dto.getContent() %></textarea>
+					<div id="content">
+						<%=dto.getContent() %>
+					</div>
 				</td>
 			</tr>
 		</table>
