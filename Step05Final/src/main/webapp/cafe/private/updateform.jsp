@@ -18,6 +18,14 @@
 </head>
 <body>
 	<div class="container">
+		<nav>
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a href="../index.jsp">Home</a></li>
+		    <li class="breadcrumb-item"><a href="list.jsp">Cafe</a></li>
+		    <li class="breadcrumb-item"><a href="../detail.jsp?num=<%=dto.getNum() %>">Detail</a></li>
+		    <li class="breadcrumb-item active">Update</li>
+		  </ol>
+		</nav>
 		<h1>글 수정양식</h1>
 		<form action="update.jsp" method="post">
 			<div class="mb-2">
